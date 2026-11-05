@@ -10,4 +10,14 @@ import kotlinx.coroutines.flow.update
 class SiswaViewModel : ViewModel() {
     private val _statusUI = MutableStateFlow(Siswa())
     val statusUI: StateFlow<Siswa> = _statusUI.asStateFlow()
+
+    fun setSiswa(ls: List<String>) {
+        _statusUI.update { currentState ->
+            currentState.copy(
+                nama = ls.getOrElse(0) { "" },
+                gender = ls.getOrElse(1) { "" },
+                alamat = ls.getOrElse(2) { "" },
+            )
+        }
+    }
 }
